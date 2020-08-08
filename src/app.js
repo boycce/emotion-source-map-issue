@@ -1,22 +1,19 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import styled from '@emotion/styled'
 import './style.css'
 
-
 const Header = ({ children }) => (
-  <HeaderCss>
+  <div css={headerCss}>
     some header text..
     {children}
-  </HeaderCss>
+  </div>
 )
 
 const Nav = () => (
   <div css={navCss}>some nav text..</div>
 )
 
-const HeaderCss = styled.div`
-
+const headerCss = css`
   color: green;
 `
 
@@ -25,7 +22,6 @@ const navCss = css({
 })
 
 export default function() {
-  console.log(1)
   return (
     <div>
       <div>some body text..</div>
