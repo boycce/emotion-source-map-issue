@@ -1,4 +1,3 @@
-let autoprefixer = require('autoprefixer')
 let HtmlWebpack = require('html-webpack-plugin')
 let MiniCssExtract = require('mini-css-extract-plugin')
 let path = require('path')
@@ -17,7 +16,7 @@ module.exports = (env, argv) => [{
       index: '/dist/index.html'
     },
     host: '0.0.0.0',
-    hot: true,
+    hot: false,
     port: 3000,
     writeToDisk: false,
     watchOptions: {
@@ -30,13 +29,12 @@ module.exports = (env, argv) => [{
       {
         test: /\.css$/,
         use: [
-          { loader: MiniCssExtract.loader, options: { hmr: true }},
+          { loader: MiniCssExtract.loader },
           { loader: 'css-loader', options: { sourceMap: true }},
-          { loader: "postcss-loader", options: { ident: 'postcss', plugins: [ autoprefixer ], sourceMap: true }}
         ]
       },
       {
-        test: /\.(m?js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules|vendor/,
         use: [
           { loader: 'babel-loader',
@@ -58,7 +56,6 @@ module.exports = (env, argv) => [{
     publicPath: publicPath,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtract({ filename: '[name].css' }),
     new HtmlWebpack({ template: 'public/index.html', filename: distDir + 'index.html' })
   ]
