@@ -39,10 +39,10 @@ module.exports = (env, argv) => [{
         use: [
           { loader: 'babel-loader',
             options: {
+              plugins: ["emotion"],
               presets: [
                 "@babel/preset-env",
-                "@babel/preset-react",
-                ["@emotion/babel-preset-css-prop", { "labelFormat": "[filename]", sourceMap: true }],
+                "@babel/preset-react"
               ]
             }
           }
